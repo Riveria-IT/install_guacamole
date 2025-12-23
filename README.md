@@ -91,7 +91,23 @@ Benutzer: guacadmin
 Passwort: guacadmin
 
 ---
+## Nginx Proxy Manager Konfiguration
 
+```bash
+location / {
+    proxy_pass http://DEINE_IP_ADRESSE:8080/guacamole/;
+
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+    proxy_buffering off;
+    proxy_read_timeout 3600;
+}
+```
 ## Upgrade
 
 ```bash
